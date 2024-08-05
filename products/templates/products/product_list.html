@@ -1,0 +1,4 @@
+{% for product in products %}
+    <a href="{{ product.get_absolute_url }}"><h3>{{ product.name }}</h3></a>
+
+{% endfor %}
