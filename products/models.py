@@ -3,6 +3,11 @@ from django.contrib.auth import get_user_model
 
 from django.urls import reverse
 
+
+class ActiveCommentManager(models.Manager):
+    def get_queryset(self):
+        return super(ActiveCommentManager , self).get_queryset().filter(active=True)
+
 class Product(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
@@ -38,3 +43,7 @@ class Comment(models.Model):
     datetime_modified = models.DateTimeField(auto_now=True)
 
     active = models.BooleanField(default=True)
+
+    #manager
+    object = models.Manager()
+    comments_active_manager = ActiveCommentManager()
