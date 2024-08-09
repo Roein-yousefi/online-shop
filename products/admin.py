@@ -2,8 +2,15 @@ from django.contrib import admin
 
 from .models import Product , Comment
 
+
+class CommentsInline(admin.TabularInline):
+    model = Comment
+    fields = ['author','text' , 'active' , 'stars']
+
 class ProductAdmin(admin.ModelAdmin):
     list_display = ('name' , 'price', 'active')
+
+    inlines = [CommentsInline]
 
 
 admin.site.register(Product, ProductAdmin)
