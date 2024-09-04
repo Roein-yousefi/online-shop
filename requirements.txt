@@ -10,11 +10,13 @@ Django==5.0.7
 django-allauth==64.0.0
 django-cache-url==3.4.5
 django-crispy-forms==2.3
+django-rosetta==0.10.0
 environs==11.0.0
 idna==3.7
 marshmallow==3.21.3
 oauthlib==3.2.2
 packaging==24.1
+polib==1.2.0
 psycopg2-binary==2.9.9
 pycparser==2.22
 PyJWT==2.9.0
