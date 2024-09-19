@@ -1,16 +1,90 @@
 {% extends '_base.html' %}
 {% load crispy_forms_tags %}
 
-
 {% block title %}
     SIGN UP
 {% endblock title %}
 
-
 {% block content %}
+    <style>
+        /* استایل فرم */
+        form {
+            background-color: #f4f7f8;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 500px;
+            margin: 50px auto;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        form:hover {
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* استایل فیلدهای ورودی */
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            font-size: 1em;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* جلوه تمرکز روی فیلدهای ورودی */
+        input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 8px rgba(0, 123, 255, 0.6);
+        }
+
+        /* استایل دکمه ثبت‌نام */
+        input[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-top: 20px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+            transform: translateY(-3px);
+        }
+
+
+    </style>
+
     <form action="" method="post">
         {% csrf_token %}
         {{ form|crispy }}
-        <input type="submit" value="signup">
+        <input type="submit" value="Sign Up">
     </form>
+        {% include 'footer.html' %}
+
+
+    <script>
+        // جلوه انیمیشن وقتی روی دکمه کلیک می‌شود
+        document.querySelector('form').addEventListener('submit', function(event) {
+            event.preventDefault(); // جلوگیری از ارسال فرم برای نمایش انیمیشن
+            const submitButton = document.querySelector('input[type="submit"]');
+
+            submitButton.value = 'Signing Up...'; // تغییر متن دکمه هنگام کلیک
+            submitButton.style.backgroundColor = '#28a745'; // تغییر رنگ دکمه به سبز
+            submitButton.disabled = true; // غیرفعال کردن دکمه برای جلوگیری از کلیک مجدد
+
+            // شبیه‌سازی ارسال فرم بعد از 2 ثانیه
+            setTimeout(function() {
+                event.target.submit(); // ارسال فرم
+            }, 2000);
+        });
+    </script>
 {% endblock content %}

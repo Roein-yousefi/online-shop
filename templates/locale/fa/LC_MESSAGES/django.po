@@ -1,0 +1,90 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-09-19 15:47+0330\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: .\_base.html:93
+msgid "logout"
+msgstr "خروج"
+
+#: .\_base.html:98
+msgid "login"
+msgstr "ورود کنید"
+
+#: .\_base.html:101
+msgid "signup"
+msgstr "ثبت نام"
+
+#~ msgid "Very Bad"
+#~ msgstr "خیلی بد"
+
+#~ msgid "Bad"
+#~ msgstr "بد"
+
+#~ msgid "Normal"
+#~ msgstr "معمولی"
+
+#~ msgid "Good"
+#~ msgstr "خوب"
+
+#~ msgid "Perfect"
+#~ msgstr "عالی"
+
+#~ msgid "comment"
+#~ msgstr "متن نظر"
+
+#~ msgid "what is your score?"
+#~ msgstr "امتیاز خود را وار د کنید"
+
+#~ msgid "products detail"
+#~ msgstr "جزِِِِییات محصول"
+
+#~ msgid "$"
+#~ msgstr "تومان"
+
+#~ msgid "add to cart"
+#~ msgstr "اضافه به سبد خرید"
+
+#~ msgid "Categories:"
+#~ msgstr "دسته بندی ها:"
+
+#~ msgid "aboute products"
+#~ msgstr "درباره محصول"
+
+#~ msgid "Features"
+#~ msgstr "ویژگی ها"
+
+#~ msgid "Comments"
+#~ msgstr "نظرات"
+
+#~ msgid "weight"
+#~ msgstr "وزن"
+
+#~ msgid "size"
+#~ msgstr "سایز"
+
+#~ msgid "black"
+#~ msgstr "سیاه"
+
+#~ msgid "green"
+#~ msgstr "سبز"
+
+#~ msgid "red"
+#~ msgstr "قرمز"
+
+#~ msgid "to write your comment please"
+#~ msgstr "برای ثبت نظر لطفا"

@@ -3,9 +3,11 @@ from django.views import generic
 from .forms import CommentForm
 from .models import Product
 from .forms import CommentForm
+from cart.forms import AddToCartForm
+
 class ProductListView(generic.ListView):
     queryset = Product.objects.filter(active=True)
-    template_name = 'products/product_list.html'
+    template_name = 'products/home.html'
     context_object_name = 'products'
 
 
@@ -17,6 +19,7 @@ class ProductDetailView(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['comment_form'] = CommentForm()
+        context['add_to_cart_form'] = AddToCartForm()
         
 
         return context

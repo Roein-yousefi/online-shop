@@ -1,15 +1,62 @@
 {% extends '_base.html' %}
-
+{% load i18n %}
 
 {% block title %}
     LOGOUT
 {% endblock title %}
 
-
 {% block content %}
+    <style>
+        /* استایل فرم */
+        form {
+            background-color: #f9f9f9;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            max-width: 400px;
+            margin: 50px auto;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* استایل متن داخل فرم */
+        h3 {
+            font-family: 'Arial', sans-serif;
+            font-size: 1.5em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* استایل دکمه تایید */
+        input[type="submit"] {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #218838;
+        }
+    </style>
+
     <form action="" method="post">
         {% csrf_token %}
-        <h3>are you sure for log out??</h3>
-        <input type="submit" value="are you sure???">
+        <h3>آیا برای خروج مطمعن هستید؟؟</h3>
+        <input type="submit" value="بله">
     </form>
+
+    <script>
+        // وقتی روی دکمه کلیک شد، پیغام تأیید نشان می‌دهد
+        document.querySelector('form').addEventListener('submit', function(event) {
+            const confirmed = confirm('آیا از خروج خود مطمئن هستید؟');
+            if (!confirmed) {
+                event.preventDefault();  // لغو ارسال فرم
+            }
+        });
+    </script>
 {% endblock content %}

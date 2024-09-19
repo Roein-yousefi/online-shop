@@ -1,0 +1,174 @@
+{% load i18n %}
+{% load static %}
+
+<!-- Footer Start -->
+<footer class="footer">
+    <style>
+        /* استایل کلی فوتر */
+        .footer {
+            background-color: #1f1f1f;
+            padding: 60px 0;
+            color: #fff;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        /* استایل بخش بالای فوتر */
+        .footer-top {
+            padding: 50px 0;
+            background-color: #282828;
+            transition: background-color 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* انیمیشن hover برای کل فوتر */
+        .footer-top:hover {
+            background-color: #333;
+        }
+
+        /* استایل لوگو */
+        .footer img {
+            width: 120px;
+            margin-bottom: 20px;
+            transition: transform 0.5s ease-in-out;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
+        }
+
+        .footer img:hover {
+            transform: rotate(360deg); /* چرخش لوگو هنگام hover */
+        }
+
+        /* انیمیشن fade-in برای لوگو */
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* استایل منو */
+        .footer-menu {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .footer-menu li {
+            display: inline-block;
+            opacity: 0;
+            animation: fadeUp 1.5s ease forwards;
+            animation-delay: 0.5s;
+        }
+
+        /* انیمیشن بالا آمدن منو */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* استایل لینک‌های فوتر */
+        .footer-menu a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+
+        .footer-menu a:hover {
+            color: #ff8c00; /* تغییر رنگ لینک‌ها هنگام hover */
+        }
+
+        /* استایل متن کپی‌رایت */
+        .footer-widget {
+            font-size: 0.9em;
+            color: #888;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeInText 2s ease forwards;
+        }
+
+        /* انیمیشن برای متن کپی‌رایت */
+        @keyframes fadeInText {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* افکت نور متحرک برای فوتر */
+        .footer::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            transform: rotate(45deg);
+            z-index: 1;
+            animation: moveLight 4s infinite;
+        }
+
+        /* حرکت افکت نور */
+        @keyframes moveLight {
+            from {
+                left: -50%;
+            }
+            to {
+                left: 50%;
+            }
+        }
+    </style>
+
+    <div class="footer-top">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-9 text-center">
+                    <div class="footer-widget mb--50">
+                        <div class="textwidget">
+                            <img src="{% static 'img/codingyar_logo.png' %}" alt="Logo">
+                        </div>
+                    </div>
+                    <div class="footer-widget mb--50 pb--1">
+                        <ul class="footer-menu">
+                            <li><a href="">درباره ما</a></li>
+                            <li><a href="">قوانین و مقررات</a></li>
+                            <li><a href="">تماس با ما</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-widget">
+                        Codingyar.com © | all rights reserved
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // افکت نرم اسکرول به بالا هنگام کلیک روی لینک‌ها
+        document.querySelectorAll('.footer-menu a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</footer>
+<!-- Footer End -->
