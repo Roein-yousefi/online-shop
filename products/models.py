@@ -11,7 +11,7 @@ class ActiveCommentManager(models.Manager):
 
 class Product(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField()
+    description = models.TextField(blank=True, null=True)
     price = models.PositiveIntegerField(default=0)
     active = models.BooleanField(default=True)
     image = models.ImageField(verbose_name=('Product Image'), upload_to='product/product_cover' , blank=True)

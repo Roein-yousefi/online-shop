@@ -19,10 +19,12 @@ class Cart:
 
         if product_id not in self.cart:
             self.cart[product_id]= {'quantity':quantity}
-        if replace_current_quantity:
-            self.cart[product_id]['quantity'] = quantity
         else:
-            self.cart[product_id]['quantity'] += quantity
+            # اگر مقدار جدید را جایگزین کنیم
+            if replace_current_quantity:
+                self.cart[product_id]['quantity'] = quantity  # مقدار جدید را جایگزین می‌کند
+            else:
+                self.cart[product_id]['quantity'] = quantity  # مقدار جدید را به جای مقدار قبلی قرار می‌دهد
 
         messages.success(self.request, _('product added'))
 

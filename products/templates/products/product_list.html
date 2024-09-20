@@ -1,4 +1,5 @@
 {% extends '_base.html' %}
+{% load i18n %}
 
 {% block title %}
     RoeinShoping
@@ -6,19 +7,8 @@
 
 {% block content %}
 
-    <!-- Preloader Start -->
-    {#    <div class="ShoppingYar-preloader active">#}
-    {#        <div class="ShoppingYar-preloader-inner h-100 d-flex align-items-center justify-content-center">#}
-    {#            <div class="ShoppingYar-child ShoppingYar-bounce1"></div>#}
-    {#            <div class="ShoppingYar-child ShoppingYar-bounce2"></div>#}
-    {#            <div class="ShoppingYar-child zuka-bounce3"></div>#}
-    {#        </div>#}
-    {#    </div>#}
-    <!-- Preloader End -->
-
     <!-- Main Wrapper Start -->
     <div class="wrapper">
-
 
         <!-- Main Content Wrapper Start -->
         <div class="main-content-wrapper container-fluid">
@@ -46,74 +36,42 @@
                                     <div class="row xxl-block-grid-6 grid-space-20">
                                         {% for product in products %}
                                             <div class="col-xl-3 col-md-4 col-sm-6 mb--50">
-                                                <div class="ShoppingYar-product">
-                                                    <div class="product-inner">
-                                                        <figure class="product-image">
-                                                            <a href="{{ product.get_absolute_url }}">
-                                                                {% if product.image %}
-                                                                <img class="m-auto" style="max-height: 400px;"
-                                                                     src="{{ product.image.url }}"
-                                                                     alt="">
+                                                <div class="product-card">
+                                                    <div class="product-image">
+                                                        <a href="{{ product.get_absolute_url }}">
+                                                            {% if product.image %}
 
-                                                                {% endif %}
+                                                                <img src="{{ product.image.url }}"
+                                                                     alt="{{ product.name }}" class="img-fluid"
+                                                                     href="{{ product.get_absolute_url }}">
+                                                            {% endif %}
+                                                        </a>
+                                                        <div class="product-overlay">
+                                                            <a href="wishlist.html" class="overlay-icon">
+                                                                <i class="flaticon flaticon-like"></i>
                                                             </a>
-                                                            <div class="ShoppingYar-product-action">
-                                                                <div class="product-action d-flex">
-                                                                    <a href="wishlist.html" class="action-btn">
-                                                                        <i class="flaticon flaticon-like"></i>
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                            <span class="product-badge">تخفیف ویژه</span>
-                                                        </figure>
-                                                        <div class="product-info">
-                                                            <h3 class="product-title h6 mb--15">
-                                                                <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
-                                                            </h3>
-                                                            <div class="product-price-wrapper mb--30">
-                                                                <span class="money text-success">{{ product.price }} تومان</span>
-                                                                <span class="money-separator">-</span>
-                                                                <span class="old-price text-danger">
-                                                                <span class="money text-danger">۸۰,۰۰۰ تومان</span>
-                                                            </span>
-                                                            </div>
-                                                            <a href="cart.html"
-                                                               class="btn btn-small btn-bg-sand btn-color-dark px-3">اضافه
-                                                                کردن به سبد خرید</a>
                                                         </div>
+                                                        <span class="product-badge">تخفیف ویژه</span>
+                                                    </div>
+                                                    <div class="product-info">
+                                                        <h3 class="product-title">
+                                                            <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                                                        </h3>
+                                                        <div class="product-price">
+                                                            <span class="current-price text-success">{{ product.price }} تومان</span>
+                                                            <span class="old-price text-danger">۸۰,۰۰۰ تومان</span>
+                                                        </div>
+                                                        <form action="{% url 'cart:cart_add' product.id %}" method="POST">
+                                                            {% csrf_token %}
+                                                            <input type="hidden" name="quantity" value="1">
+                                                            <button class="btn btn-small btn-bg-red btn-color-white btn-hover-2" type="submit">
+                                                                {% trans 'add to cart' %}
+                                                            </button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>
                                         {% endfor %}
-
-
-                                        {#                                        <div class="col-xl-3 col-md-4 col-sm-6 mb--50">#}
-                                        {#                                            <div class="ShoppingYar-product">#}
-                                        {#                                                <div class="product-inner">#}
-                                        {#                                                    <figure class="product-image">#}
-                                        {#                                                        <a href="product-details.html">#}
-                                        {#                                                            <img src="https://dkstatics-public.digikala.com/digikala-products/4140472.jpg?x-oss-process=image/resize,m_lfit,h_800,w_800/quality,q_90" alt="Products">#}
-                                        {#                                                        </a>#}
-                                        {#                                                        <div class="ShoppingYar-product-action">#}
-                                        {#                                                            <div class="product-action d-flex">#}
-                                        {#                                                                <a href="wishlist.html" class="action-btn">#}
-                                        {#                                                                    <i class="flaticon flaticon-like"></i>#}
-                                        {#                                                                </a>#}
-                                        {#                                                            </div>#}
-                                        {#                                                        </div>#}
-                                        {#                                                    </figure>#}
-                                        {#                                                    <div class="product-info">#}
-                                        {#                                                        <h3 class="product-title mb--15">#}
-                                        {#                                                            <a href="product-details.html">کلاه زمستانی طرف برف</a>#}
-                                        {#                                                        </h3>#}
-                                        {#                                                        <div class="product-price-wrapper mb--30">#}
-                                        {#                                                            <span class="money">۱۳۸,۰۰۰ تومان</span>#}
-                                        {#                                                        </div>#}
-                                        {#                                                        <a href="cart.html" class="btn btn-small btn-bg-sand btn-color-dark px-3">اضافه کردن به سبد خرید</a>#}
-                                        {#                                                    </div>#}
-                                        {#                                                </div>#}
-                                        {#                                            </div>#}
-                                        {#                                        </div>#}
                                     </div>
                                 </div>
                             </div>
@@ -133,8 +91,7 @@
                 </div>
             </div>
         </div>
-        <!-- Main Content Wrapper Start -->
-
+        <!-- Main Content Wrapper End -->
 
         <!-- Search form Popup Start -->
         <div class="searchform__popup" id="searchForm">
@@ -151,16 +108,131 @@
         </div>
         <!-- Search form Popup End -->
 
-
         <!-- Global Overlay Start -->
         <div class="ShoppingYar-global-overlay"></div>
         <!-- Global Overlay End -->
 
     </div>
     <!-- Main Wrapper End -->
+
     {% include 'footer.html' %}
 
+    <!-- Inline CSS -->
+    <style>
+        .product-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
 
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
 
+        .product-image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+        }
 
+        .product-image img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .product-image:hover img {
+            transform: scale(1.1);
+        }
+
+        .product-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .product-card:hover .product-overlay {
+            opacity: 1;
+        }
+
+        .overlay-icon {
+            color: #fff;
+            font-size: 24px;
+            transition: color 0.3s ease;
+        }
+
+        .product-info {
+            padding: 15px;
+            text-align: center;
+        }
+
+        .product-title {
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .product-price {
+            margin-bottom: 15px;
+        }
+
+        .current-price {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            margin-left: 5px;
+        }
+
+        .btn-add-to-cart {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #f4a261;
+            color: #fff;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+            transition: background 0.3s ease;
+        }
+
+        .btn-add-to-cart:hover {
+            background: #e76f51;
+        }
+    </style>
+
+    <!-- Inline JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Example: Smooth scroll to top button
+            const scrollToTopButton = document.createElement('button');
+            scrollToTopButton.innerHTML = '<i class="fa fa-arrow-up"></i>';
+            scrollToTopButton.classList.add('scroll-to-top');
+            document.body.appendChild(scrollToTopButton);
+
+            scrollToTopButton.addEventListener('click', function () {
+                window.scrollTo({top: 0, behavior: 'smooth'});
+            });
+
+            window.addEventListener('scroll', function () {
+                if (window.scrollY > 300) {
+                    scrollToTopButton.classList.add('visible');
+                } else {
+                    scrollToTopButton.classList.remove('visible');
+                }
+            });
+        });
+    </script>
 {% endblock content %}
