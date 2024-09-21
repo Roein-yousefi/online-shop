@@ -43,6 +43,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'jalali_date',
+    'django.contrib.humanize',
+
+
     'crispy_forms',
     'crispy_bootstrap4',
     'allauth',
@@ -53,7 +57,11 @@ INSTALLED_APPS = [
     'pages',
     'products',
     'cart',
+    'persion_number',
 ]
+
+#jalali date time
+
 
 SITE_ID = 1
 

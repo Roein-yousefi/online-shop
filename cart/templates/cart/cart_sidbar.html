@@ -1,4 +1,6 @@
 {% load i18n %}
+{% load coma %}
+{% load persion_number_tags %}
 
     <!-- Mini Cart Start -->
     <aside class="mini-cart" id="miniCart">
@@ -23,7 +25,7 @@
                                         </a>
                                     </span>
                                 <span class="mini-cart__product__quantity">
-                                        <span>{{item.product_obj.price}}</span> &#215; <span>{{ item.quantity }}</span>
+                                        <span>{{item.product_obj.price|intcomma_custom |persion_number_tag}}</span> &#215; <span>{{ item.quantity |persion_number_tag }}</span>
                                     </span>
                             </div>
                         </li>
@@ -34,7 +36,7 @@
                     </ul>
                     <div class="mini-cart__total">
                         <span>{% trans 'Total' %}</span>
-                        <span class="ammount">{{ cart.get_total }} {% trans '$' %}</span>
+                        <span class="ammount">{{ cart.get_total|intcomma_custom |persion_number_tag }} {% trans '$' %}</span>
                     </div>
                     <div class="mini-cart__buttons">
                         <a href="{% url 'cart:cart_detail' %}" class="btn btn-fullwidth btn-bg-sand mb--20">{% trans 'Go To Cart' %}</a>

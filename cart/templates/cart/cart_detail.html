@@ -3,6 +3,8 @@
 {% load crispy_forms_tags %}
 {% load comment_tags %}
 {% load i18n %}
+{% load coma %}
+{% load persion_number_tags %}
 
 
 {% block content %}
@@ -52,12 +54,12 @@
                                                 </td>
                                                 <td class="product-name ">
                                                     <h3>
-                                                        <a href="{{ item.product_obj.get_absolute_url }}">{{ item.product_obj.name }}</a>
+                                                        <a href="{{ item.product_obj.get_absolute_url|persion_number_tag }}">{{ item.product_obj.name }}</a>
                                                     </h3>
                                                 </td>
                                                 <td class="product-price">
                                                                     <span class="product-price-wrapper">
-                                                                        <span class="money">{{ item.product_obj.price }}</span>
+                                                                        <span class="money">{{ item.product_obj.price|intcomma_custom |persion_number_tag }}</span>
                                                                     </span>
                                                 </td>
                                                 <td class="product-quantity">
@@ -75,7 +77,7 @@
                                                 </td>
                                                 <td class="product-total-price">
                                                                     <span class="product-price-wrapper">
-                                                                        <span class="money">{{ item.total_price }}</span>
+                                                                        <span class="money">{{ item.total_price|intcomma_custom |persion_number_tag }}</span>
                                                                     </span>
                                                 </td>
                                             </tr>
@@ -87,11 +89,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row no-gutters border-top pt--20 mt--20">
-                            <div class="col-sm-6 text-sm-right">
-                                <button type="submit" class="cart-form__btn">خالی کردن سبد خرید</button>
-                            </div>
-                        </div>
+
 
                     </div>
                     <div class="col-lg-4">
@@ -106,7 +104,7 @@
                                         </div>
                                         <div class="cart-calculator__item--value">
                                                 <span class="product-price-wrapper">
-                                                    <span class="money">{{cart.get_total}} تومان</span>
+                                                    <span class="money">{{cart.get_total|intcomma_custom |persion_number_tag}} تومان</span>
                                                 </span>
                                         </div>
                                     </div>

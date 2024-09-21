@@ -1,5 +1,7 @@
 {% extends '_base.html' %}
 {% load i18n %}
+{% load persion_number_tags %}
+{% load coma %}
 
 {% block title %}
     RoeinShoping
@@ -58,8 +60,8 @@
                                                             <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
                                                         </h3>
                                                         <div class="product-price">
-                                                            <span class="current-price text-success">{{ product.price }} تومان</span>
-                                                            <span class="old-price text-danger">۸۰,۰۰۰ تومان</span>
+                                                            <span class="current-price text-success">{{ product.price |intcomma_custom |persion_number_tag}} تومان</span>
+                                                            <span class="old-price text-danger">۸۸۸,۰۰۰ تومان</span>
                                                         </div>
                                                         <form action="{% url 'cart:cart_add' product.id %}" method="POST">
                                                             {% csrf_token %}

@@ -3,6 +3,9 @@
 {% load crispy_forms_tags %}
 {% load comment_tags %}
 {% load i18n %}
+{% load jalali_tags %}
+{% load persion_number_tags %}
+{% load coma %}
 
 {% block title %}
     {{ product.name }}
@@ -39,9 +42,9 @@
                         <h3 class="product-title mb--20">{{ product.name }}</h3>
                         <p class="product-short-description mb--20">{{ product.description }}</p>
                         <div class="my-5 py-5 product-price-wrapper mb--25">
-                            <span class="money text-success" style="font-size: 1.5rem; transition: color 0.5s ease;">{{ product.price }} {% trans '$' %}</span>
+                            <span class="money text-success" style="font-size: 1.5rem; transition: color 0.5s ease;">{{ product.price|intcomma_custom |persion_number_tag }} {% trans '$' %}</span>
                             <span class="price-separator">-</span>
-                            <span class="money old-price text-danger" style="font-size: 1.3rem; transition: color 0.5s ease;">{{ product.price }} {% trans '$' %}</span>
+                            <span class="money old-price text-danger" style="font-size: 1.3rem; transition: color 0.5s ease;">۸۸۸,۰۰۰ {% trans '$' %}</span>
                         </div>
                         <form action="{% url 'cart:cart_add' product.id %}" method="POST" style="margin-top: 30px;"> <!-- فاصله از بخش قیمت -->
                             {% csrf_token %}
@@ -77,7 +80,7 @@
                             </a>
                             <a class="m-0 product-data-tab__link nav-link" id="nav-reviews-tab" data-toggle="tab"
                                href="#nav-reviews" role="tab" aria-selected="true">
-                                <span>{% trans 'Comments' %} ({{ product.comments.all|comments_only_tags|length }})</span>
+                                <span>{% trans 'Comments' %} ({{ product.comments.all|comments_only_tags|length|persion_number_tag }})</span>
                             </a>
                         </div>
                         <div class="tab-content product-data-tab__content" id="product-tabContent">
@@ -138,7 +141,7 @@
                                                         <div class="review__meta" style="margin-bottom: 10px;">
                                                             <strong style="font-size: 16px; color: #333;">{{ comment.author.username }}</strong>
                                                             <span style="color: #aaa; margin: 0 5px;">-</span>
-                                                            <span style="font-size: 14px; color: #888;">{{ comment.datetime_added }}</span>
+                                                            <span style="font-size: 14px; color: #888;">{{ comment.datetime_added|to_jalali:'%Y/%m/%d' }}</span>
                                                         </div>
                                                         <div class="product-rating" style="margin-bottom: 10px;">
                                                             <span style="color: #f1c40f; font-size: 18px;">⭐ {{ comment.stars }} / 5</span>
