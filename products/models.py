@@ -11,13 +11,13 @@ class ActiveCommentManager(models.Manager):
         return super(ActiveCommentManager , self).get_queryset().filter(active=True)
 
 class Product(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField(blank=True, null=True)
-    price = models.PositiveIntegerField(default=0)
-    active = models.BooleanField(default=True)
-    image = models.ImageField(verbose_name=('Product Image'), upload_to='product/product_cover' , blank=True)
+    name = models.CharField(verbose_name= _('name'),max_length=100)
+    description = models.TextField(verbose_name= _('description') , blank=True, null=True)
+    price = models.PositiveIntegerField(verbose_name= _('price') ,default=0)
+    active = models.BooleanField(verbose_name= _('active') ,default=True)
+    image = models.ImageField(verbose_name=_('Product Image'), upload_to='product/product_cover' , blank=True)
 
-    datetime_added = models.DateTimeField(default=timezone.now())
+    datetime_added = models.DateTimeField(verbose_name= _('date time created') ,default=timezone.now())
     datetime_modified = models.DateTimeField(auto_now=True)
 
     def __str__(self):
@@ -35,17 +35,17 @@ class Comment(models.Model):
         ('1', _('Good')),
         ('1', _('Perfect')),
     ]
-    product = models.ForeignKey(Product ,on_delete=models.CASCADE ,related_name='comments')
+    product = models.ForeignKey(Product ,verbose_name= _('product name') ,on_delete=models.CASCADE ,related_name='comments')
     text = models.TextField(verbose_name=_('comment'))
 
-    author = models.ForeignKey(get_user_model(),on_delete=models.CASCADE ,related_name='comments')
+    author = models.ForeignKey(get_user_model(),verbose_name= _('author') ,on_delete=models.CASCADE ,related_name='comments')
     stars = models.CharField(max_length=10 ,choices=PRODUCT_CHOICES ,verbose_name=_('what is your score?'))
 
 
-    datetime_added = models.DateTimeField(auto_now_add=True)
+    datetime_added = models.DateTimeField(verbose_name= _('date time created') ,auto_now_add=True)
     datetime_modified = models.DateTimeField(auto_now=True)
 
-    active = models.BooleanField(default=True)
+    active = models.BooleanField(verbose_name= _('active') ,default=True)
 
     #manager
     object = models.Manager()
