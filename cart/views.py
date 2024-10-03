@@ -26,8 +26,7 @@ def add_to_cart_view(request, product_id):
     if form.is_valid():
         cleaned_data = form.cleaned_data
         quantity = cleaned_data['quantity']
-        cart.add(product, quantity, replace_current_quantity=False)  # تغییر این خط
-
+        cart.add(product, quantity, replace_current_quantity=False)
     return redirect('cart:cart_detail')
 
 

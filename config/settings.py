@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'products',
     'cart',
     'persion_number',
+    'orders',
 ]
 
 #jalali date time
